@@ -1,0 +1,11 @@
+﻿@model List<Citas.Web.Models.PacienteModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Pacientes</h2>
+
+@foreach (var paciente in Model)
+{
+    <p>@paciente.Id @paciente.Nombre @paciente.Direccion</p>
+}
