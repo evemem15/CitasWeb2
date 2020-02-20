@@ -1,11 +1,33 @@
-﻿@model List<Citas.Web.Models.PacienteModel>
+﻿@model List<Admon.BL.Paciente>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Pacientes</h2>
 
-@foreach (var paciente in Model)
-{
-    <p>@paciente.Id @paciente.Nombre @paciente.Direccion</p>
-}
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Direccion
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var paciente in Model)
+    {
+        <tr>
+            <td>@paciente.Id</td>
+            <td>@paciente.Nombre</td>
+            <td>@paciente.Direccion</td>
+        </tr>
+    }
+</table>
