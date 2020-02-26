@@ -8,10 +8,17 @@ namespace Admon.BL
 {
    public class Paciente
     {
+        public Paciente()
+        {
+            Activo = true;
+        }
+
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Telefono { get; set; }
         public string Direccion { get; set; }
         public string FechaNacimiento { get; set; }
+        public Categoria Categoria { get; set; }
+        public bool Activo { get; set; }
     }
 }

@@ -22,5 +22,37 @@ namespace Admon.BL
             ListadePacientes = _contexto.Pacientes.ToList();
             return ListadePacientes;
         }
+
+        public void GuardarPaciente(Paciente paciente)
+        {
+            if(paciente.Id == 0)
+            {
+                _contexto.Pacientes.Add(paciente);
+            }
+            else
+            {
+                var pacienteExistente = _contexto.Pacientes.Find(paciente.Id);
+                pacienteExistente.Nombre = paciente.Nombre;
+                pacienteExistente.Direccion = paciente.Direccion;
+                pacienteExistente.Telefono = paciente.Telefono;
+                pacienteExistente.FechaNacimiento = paciente.FechaNacimiento;
+            }
+             _contexto.SaveChanges();
+        }
+
+        public Paciente ObtenerPaciente(int id)
+        {
+            var paciente = _contexto.Pacientes.Find(id);
+            
+            return paciente;
+        }
+
+        public void EliminarPaciente(int id)
+        {
+            var paciente = _contexto.Pacientes.Find(id);
+
+            _contexto.Pacientes.Remove(paciente);
+            _contexto.SaveChanges();
+        }
     }
 }
