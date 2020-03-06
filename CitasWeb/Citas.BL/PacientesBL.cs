@@ -19,7 +19,7 @@ namespace Admon.BL
 
         public List<Paciente> ObtenerPaciente()
         {
-            ListadePacientes = _contexto.Pacientes.ToList();
+            ListadePacientes = _contexto.Pacientes.Include("Categoria").ToList();
             return ListadePacientes;
         }
 
@@ -36,13 +36,15 @@ namespace Admon.BL
                 pacienteExistente.Direccion = paciente.Direccion;
                 pacienteExistente.Telefono = paciente.Telefono;
                 pacienteExistente.FechaNacimiento = paciente.FechaNacimiento;
+                pacienteExistente.UrlImagen = paciente.UrlImagen;
             }
              _contexto.SaveChanges();
         }
 
         public Paciente ObtenerPaciente(int id)
         {
-            var paciente = _contexto.Pacientes.Find(id);
+            var paciente = _contexto.Pacientes
+                .Include("Categoria").FirstOrDefault(p => p.Id == id);
             
             return paciente;
         }
